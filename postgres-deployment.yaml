@@ -6,7 +6,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: postgres-db
+    app: postgres-db
   template:
     metadata:
       labels:
@@ -24,3 +24,9 @@ spec:
           value: password
         ports:
         - containerPort: 5432
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: postgres-storage
+        emptyDir: {}
